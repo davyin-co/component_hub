@@ -1,0 +1,22 @@
+component_hub.content_widget:
+  type: config_object
+  label: 'Content widget settings'
+  mapping:
+    categories:
+      type: sequence
+      label: Categories
+      sequence:
+        type: mapping
+        label: Category
+        mapping:
+          id:
+            type: string
+            label: 'ID'
+          name:
+            type: label
+            label: 'Category name'
+            translatable: true
+            translation context: 'content_widget'
+          weight:
+            type: integer
+            label: 'Weight'

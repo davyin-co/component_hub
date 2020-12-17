@@ -1,0 +1,4 @@
+services:
+  plugin.manager.content_widget:
+    class: Drupal\component_hub\Plugin\ContentWidgetManager
+    parent: default_plugin_manager

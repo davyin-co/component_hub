@@ -1,0 +1,81 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function component_hub_theme() {
+  $_type = \Drupal::service('plugin.manager.content_widget');
+  $plugin_definitions = $_type->getDefinitions();
+  $result = [];
+  foreach ($plugin_definitions as $plugin_id => $plugin_definition) {
+    if (empty($plugin_definition['plugin_path']) || empty($plugin_definition['template'])) {
+      continue;
+    }
+
+    $template_path = \Drupal::service('module_handler')->getModule($plugin_definition['plugin_path']['name'])->getPath();
+    $template_path = $template_path . '/'. $plugin_definition['plugin_path']['directory'];
+
+    $result['component_hub_'.$plugin_id] = [
+      'template' => $plugin_definition['template'],
+      'render element' => 'elements',
+      'path' => $template_path
+    ];
+  }
+  return $result;
+}
+/**
+ * Implements hook_preprocess_block().
+ */
+function component_hub_preprocess_block(&$variables) {
+  if(!empty($variables['content']['#block_content'])) {
+    $block_content = $variables['content']['#block_content'];
+    $type = \Drupal::service('plugin.manager.content_widget');
+    $plugin = $type->getPluginByEntityName($block_content->getEntityTypeId() . ':' . $block_content->bundle());
+    if($plugin) {
+      $plugin->blockViewAlter($variables);
+    }
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function component_hub_library_info_alter(&$libraries, $extension) {
+  $type = \Drupal::service('plugin.manager.content_widget');
+
+  $plugin_definitions = $type->getDefinitions();
+  foreach ($plugin_definitions as $plugin_id => $plugin_definition) {
+    if (empty($plugin_definition['plugin_path'])) {
+      continue;
+    }
+    $plugin_path = $plugin_definition['plugin_path']['directory'];
+    //front library, including css & js.
+    if(isset($plugin_definition['front'])) {
+      $libraries[$plugin_definition['provider'] . '.' . $plugin_id . '.front'] = [
+        'version' => 'VERSION',
+        'js' => [
+          $plugin_path . DIRECTORY_SEPARATOR . $plugin_definition['front']['js'] => [],
+        ],
+        'css' => [
+          'theme' => [
+            $plugin_path . DIRECTORY_SEPARATOR . $plugin_definition['front']['css'] => [],
+          ]
+        ]
+      ] + $plugin_definition['front']['dependencies'];
+    }
+
+    //widget library, including css & js.
+    if(isset($plugin_definition['widget'])) {
+      $libraries[$plugin_definition['provider'] . '.' . $plugin_id . '.widget'] = [
+        'version' => 'VERSION',
+        'js' => [
+          $plugin_path . DIRECTORY_SEPARATOR . $plugin_definition['widget']['js'] => [],
+        ],
+        'css' => [
+          'theme' => [
+            $plugin_path  . DIRECTORY_SEPARATOR . $plugin_definition['widget']['css'] => [],
+          ]
+        ],
+      ] + $plugin_definition['widget']['dependencies'];
+    }
+  }
+}

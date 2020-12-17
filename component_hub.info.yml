@@ -1,0 +1,11 @@
+name: Component Hub
+type: module
+description: Component hub
+package: dyniva
+core: 8.x
+dependencies:
+  - block
+  - field
+  - system
+  - text
+  - views

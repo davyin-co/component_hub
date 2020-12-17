@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - field_permissions
+    - options
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: block_content.field_spacer
+field_name: field_spacer
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: large_bottom
+      label: '底部大空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-large-bottom.png">'
+    -
+      value: large_top
+      label: '顶部大空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-large-top.png">'
+    -
+      value: large_both
+      label: '上下大空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-large-both.png">'
+    -
+      value: medium_bottom
+      label: '底部中空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-medium-bottom.png">'
+    -
+      value: medium_top
+      label: '顶部中空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-medium-top.png">'
+    -
+      value: medium_both
+      label: '上下中空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-medium-both.png">'
+    -
+      value: small_bottom
+      label: '底部小空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-small-bottom.png">'
+    -
+      value: small_top
+      label: '顶部小空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-small-top.png">'
+    -
+      value: small_both
+      label: '上下小空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-small-both.png">'
+    -
+      value: none
+      label: '无空<br><img class="ccms-radio-cover" src="[site:base_path]modules/custom/component_hub/images/space-none.png">'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,7 @@
+component_hub.list:
+  path: '/component_hub/list'
+  defaults:
+    _controller: '\Drupal\component_hub\Controller\ContentWidgetController::lists'
+    _title: "Component list"
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,61 @@
+categories:
+  -
+    id: banner 
+    name: 'Banner'
+    weight: 1
+  -
+    id: content
+    name: 'Content'
+    weight: 2
+  -
+    id: list
+    name: 'List'
+    weight: 3
+  -
+    id: showcase
+    name: 'Showcase'
+    weight: 5
+  -
+    id: engagement
+    name: 'Engagement'
+    weight: 7
+  -
+    id: video
+    name: 'Video'
+    weight: 8
+  -
+    id: photo
+    name: 'Photo'
+    weight: 9
+  -
+    id: carousel
+    name: 'Carousel'
+    weight: 10
+  -
+    id: map
+    name: 'Map'
+    weight: 11
+  -
+    id: calendar
+    name: 'Calendar'
+    weight: 6
+  -
+    id: navigation
+    name: 'Navigation'
+    weight: 12
+  -
+    id: brand
+    name: 'Brand'
+    weight: 13
+  -
+    id: action
+    name: 'Action'
+    weight: 14
+  -
+    id: media
+    name: 'Media'
+    weight: 15
+  -
+    id: hero
+    name: 'Hero'
+    weight: 16
