@@ -2,7 +2,7 @@ name: Component Hub
 type: module
 description: Component hub
 package: dyniva
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^8.8 || ^9 || ^10
 dependencies:
   - block
   - field
