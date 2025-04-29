@@ -130,7 +130,7 @@ abstract class ContentWidgetBase extends PluginBase implements ContentWidgetInte
    */
   protected function getPluginPath() {
     $plugin_path = $this->getPluginDefinition()['plugin_path'];
-    return drupal_get_path($plugin_path['type'], $plugin_path['name']) . DIRECTORY_SEPARATOR . $plugin_path['directory'];
+    return \Drupal::service('extension.path.resolver')->getPath($plugin_path['type'], $plugin_path['name']) . DIRECTORY_SEPARATOR . $plugin_path['directory'];
   }
 
   /**
