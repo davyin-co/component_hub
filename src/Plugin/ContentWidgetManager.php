@@ -54,9 +54,9 @@ class ContentWidgetManager extends DefaultPluginManager implements FallbackPlugi
     foreach($plugin_definitions as $plugin_definition) {
       if(isset($plugin_definition['entity'])) {
         list($entity_type, $bundle) = explode(':', $plugin_definition['entity']);
-        $definition = \Drupal::service('entity.manager')->getDefinition($entity_type);
+        $definition = \Drupal::entityTypeManager()->getDefinition($entity_type);
         $bundle_key = $definition->getKey('bundle');
-        $storage = \Drupal::service('entity.manager')->getStorage($entity_type);
+        $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
         $ids = $storage->getQuery()->condition($bundle_key, $bundle)->execute();
         foreach($ids as $id) {
           $entity = $storage->load($id);

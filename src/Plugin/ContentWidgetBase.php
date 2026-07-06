@@ -33,7 +33,7 @@ abstract class ContentWidgetBase extends PluginBase implements ContentWidgetInte
    */
   protected function entityManager() {
     if (!$this->entityManager) {
-      $this->entityManager = $this->container()->get('entity.manager');
+      $this->entityManager = $this->container()->get('entity_type.manager');
     }
     return $this->entityManager;
   }
