@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Implements hook_theme().
  */
@@ -78,4 +79,20 @@ function component_hub_library_info_alter(&$libraries, $extension) {
       ] + $plugin_definition['widget']['dependencies'];
     }
   }
+}
+
+/**
+ * Implements hook_options_list_alter().
+ *
+ * Option labels of list fields (e.g. field_spacer) build image paths with
+ * tokens such as [site:base_path]. The widget sanitizes labels with
+ * FieldFilteredMarkup (Xss::filterAdmin) after this alter, which strips the
+ * "[site:" prefix, so tokens must be replaced here beforehand.
+ */
+function component_hub_options_list_alter(&$options, $context) {
+  array_walk_recursive($options, function (&$label) {
+    if (is_string($label) && strpos($label, '[') !== FALSE) {
+      $label = \Drupal::token()->replace($label);
+    }
+  });
 }
